@@ -1,0 +1,34 @@
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm run build
+      - name: Verify version bump
+        run: |
+          LOCAL_VERSION=$(node -p "require('./package.json').version")
+          NPM_VERSION=$(npm view $(node -p "require('./package.json').name") version || echo "0.0.0")
+          echo "Local: $LOCAL_VERSION, NPM: $NPM_VERSION"
+          if [ "$LOCAL_VERSION" = "$NPM_VERSION" ]; then
+            echo "Error: package.json version ($LOCAL_VERSION) has not been bumped."
+            exit 1
+          fi
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm publish --access public --no-git-checks
