@@ -1,0 +1,35 @@
+{
+  "name": "whois-ts",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "author": "Yuval Zaif",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "lint": "eslint .",
+    "clean": "rm -rf node_modules && rm -rf dist",
+    "format:check": "prettier --ignore-path ../../.gitignore --check \"**/*.{ts,tsx,js,jsx,md}\"",
+    "format": "prettier --ignore-path ../../.gitignore --write \"**/*.{ts,tsx,js,jsx,md}\""
+  },
+  "keywords": [],
+  "packageManager": "pnpm@10.10.0",
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "whois": "^2.15.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@types/node": "^24.0.10",
+    "eslint": "^9.30.1",
+    "eslint-config-prettier": "^10.1.5",
+    "prettier": "^3.6.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.1"
+  }
+}
