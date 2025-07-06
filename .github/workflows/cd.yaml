@@ -28,7 +28,8 @@ jobs:
             echo "Error: package.json version ($LOCAL_VERSION) has not been bumped."
             exit 1
           fi
+      - name: Set npm token
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
       - name: Publish to npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: pnpm publish --access public --no-git-checks

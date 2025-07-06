@@ -1,4 +1,4 @@
-# whois-ts
+# whois-client
 
 A production-ready TypeScript package for fetching and parsing WHOIS records for any domain, with robust TLD-specific parsing logic.
 
@@ -18,7 +18,7 @@ A production-ready TypeScript package for fetching and parsing WHOIS records for
 ## Installation
 
 ```sh
-npm install whois-ts whois date-fns
+npm install @zaifyuval/whois-ts whois date-fns
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ import {
   fetchAndParseWhois,
   WhoisRecord,
   WhoisDomainNotFoundError,
-} from "whois-ts";
+} from "@zaifyuval/whois-ts";
 
 async function main() {
   try {
